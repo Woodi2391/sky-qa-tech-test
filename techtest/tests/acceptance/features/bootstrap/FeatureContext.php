@@ -47,6 +47,23 @@ class FeatureContext extends BehatContext {
     }
 
     /**
+     * @Given /^I hit "add"$/
+     */
+    public function iHitAdd()
+    {
+        $this->calculator->pressAdd();
+    }
+
+    /**
+     * @Given /^I hit "subtract"$/
+     */
+    public function iHitSubtract()
+    {
+        $this->calculator->pressSubtract();
+    }
+
+
+    /**
      * @Then /^I see a result of "(\d+)"$/
      */
     public function iSeeAResultOf($argument1) {
