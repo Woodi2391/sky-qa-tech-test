@@ -19,7 +19,7 @@ class Calculator implements iCalculator {
     }
     
     public function divide($a, $b) {
-        return ($a / $b);
+        return @($a / $b);
     }
 
     public function pressNumber($number) {
