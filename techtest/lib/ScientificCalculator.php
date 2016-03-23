@@ -18,6 +18,21 @@ class ScientificCalculator extends Calculator implements iScientificCalculator
         return $result;
     }
 
+    public function decToHex($a)
+    {
+        return "0x" . strtoupper(dechex($a));
+    }
+
+    public function pressHex()
+    {
+        if (count($this->stack) > 1) {
+            $this->evaluateStack();
+        }
+        $this->op = "hex";
+    }
+
+
+
     public function pressCubeRoot()
     {
         if (count($this->stack) > 1) {
@@ -43,6 +58,9 @@ class ScientificCalculator extends Calculator implements iScientificCalculator
             case "!":
                 $result = $this->factorial(array_shift($this->stack));
                 break;
+            case "hex":
+                $result = $this->decToHex(array_shift($this->stack));
+                break;
             default:
                 parent::evaluateStack();
                 return;
@@ -51,8 +69,4 @@ class ScientificCalculator extends Calculator implements iScientificCalculator
         $this->stack[] = $result;
     }
 
-    public function decToHex($a)
-    {
-        return dechex($a);
-    }
 }

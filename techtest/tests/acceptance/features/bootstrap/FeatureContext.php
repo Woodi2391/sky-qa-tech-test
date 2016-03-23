@@ -12,38 +12,44 @@ require_once("iScientificCalculator.php");
 require_once("Calculator.php");
 require_once("ScientificCalculator.php");
 
-class FeatureContext extends BehatContext {
+class FeatureContext extends BehatContext
+{
     protected $calculator;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->calculator = new ScientificCalculator();
     }
 
     /**
      * @Given /^I enter "(-?\d+)" into the calculator$/
      */
-    public function iEnterIntoTheCalculator($argument1) {
+    public function iEnterIntoTheCalculator($argument1)
+    {
         $this->calculator->pressNumber($argument1);
     }
 
     /**
      * @When /^I hit "multiply"$/
      */
-    public function iHitMultiply() {
+    public function iHitMultiply()
+    {
         $this->calculator->pressMultiply();
     }
 
     /**
      * @When /^I hit "divide"$/
      */
-    public function iHitDivide() {
+    public function iHitDivide()
+    {
         $this->calculator->pressDivide();
     }
 
     /**
      * @Given /^I hit "equals"$/
      */
-    public function iHitEquals() {
+    public function iHitEquals()
+    {
         $this->calculator->pressEquals();
     }
 
@@ -65,11 +71,12 @@ class FeatureContext extends BehatContext {
 
 
     /**
-     * @Then /^I see a result of "(-?\d+)"$/
+     * @Then /^I see a result of "(-?[0-9A-Fx]+?)"$/
      */
-    public function iSeeAResultOf($argument1) {
+    public function iSeeAResultOf($argument1)
+    {
         $result = $this->calculator->readScreen();
-        if($result != $argument1) {
+        if ($result != $argument1) {
             throw new Exception("Wrong result, actual is [$result]");
         }
     }
@@ -99,6 +106,13 @@ class FeatureContext extends BehatContext {
         $this->calculator->pressFactorial();
     }
 
+    /**
+     * @Given /^I hit "hex"$/
+     */
+    public function iHitHex()
+    {
+        $this->calculator->pressHex();
+    }
 
 
 }
