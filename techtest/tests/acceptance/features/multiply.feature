@@ -28,4 +28,13 @@ Scenario: Multiply two numbers and add another
     And I hit "equals"
     Then I see a result of "52"
 
+  Scenario: Multiply by 0
+    Given I enter "5" into the calculator
+    And I hit "multiply"
+    And I enter "0" into the calculator
+    And I hit "equals"
+    Then I see a result of "0"
+
+
+
 
