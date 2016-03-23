@@ -29,46 +29,6 @@ class FeatureContext extends BehatContext
         $this->calculator->pressNumber($argument1);
     }
 
-    /**
-     * @When /^I hit "multiply"$/
-     */
-    public function iHitMultiply()
-    {
-        $this->calculator->pressMultiply();
-    }
-
-    /**
-     * @When /^I hit "divide"$/
-     */
-    public function iHitDivide()
-    {
-        $this->calculator->pressDivide();
-    }
-
-    /**
-     * @Given /^I hit "equals"$/
-     */
-    public function iHitEquals()
-    {
-        $this->calculator->pressEquals();
-    }
-
-    /**
-     * @Given /^I hit "add"$/
-     */
-    public function iHitAdd()
-    {
-        $this->calculator->pressAdd();
-    }
-
-    /**
-     * @Given /^I hit "subtract"$/
-     */
-    public function iHitSubtract()
-    {
-        $this->calculator->pressSubtract();
-    }
-
 
     /**
      * @Then /^I see a result of "(-?[0-9A-Fx]+?)"$/
@@ -87,31 +47,15 @@ class FeatureContext extends BehatContext
     public function iDoNotGetAResult()
     {
         $this->iSeeAResultOf("");
-
     }
 
     /**
-     * @Given /^I hit "cube root"$/
+     * @Given /^I hit "([^"]*)"$/
      */
-    public function iHitCubeRoot()
+    public function iHit($button)
     {
-        $this->calculator->pressCubeRoot();
-    }
-
-    /**
-     * @Given /^I hit "factorial"$/
-     */
-    public function iHitFactorial()
-    {
-        $this->calculator->pressFactorial();
-    }
-
-    /**
-     * @Given /^I hit "hex"$/
-     */
-    public function iHitHex()
-    {
-        $this->calculator->pressHex();
+        $function = str_replace(' ', '', ucwords($button));
+        eval('$this->calculator->press' . $function . '();');
     }
 
 
