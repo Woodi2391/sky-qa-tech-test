@@ -22,3 +22,10 @@ Feature: Division
     And I enter "-5" into the calculator
     And I hit "equals"
     Then I see a result of "-2"
+
+  Scenario: Divide by 0
+    Given I enter "10" into the calculator
+    And I hit "divide"
+    And I enter "0" into the calculator
+    And I hit "equals"
+    Then I do not get a result

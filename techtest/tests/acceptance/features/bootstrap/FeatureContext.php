@@ -72,4 +72,14 @@ class FeatureContext extends BehatContext {
             throw new Exception("Wrong result, actual is [$result]");
         }
     }
+
+    /**
+     * @Then /^I do not get a result$/
+     */
+    public function iDoNotGetAResult()
+    {
+        $this->iSeeAResultOf("");
+
+    }
+
 }
