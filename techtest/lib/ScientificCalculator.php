@@ -1,29 +1,47 @@
 <?php
 
-class ScientificCalculator extends Calculator implements iScientificCalculator {
+class ScientificCalculator extends Calculator implements iScientificCalculator
+{
 
     public function cubeRoot($a)
     {
-        return pow($a, 1/3);
+        return pow($a, 1 / 3);
     }
 
+    //Example of using loop instead of built in function
     public function factorial($a)
     {
-        return pow($a, 1/3);
+        $result = 1;
+        for ($i = 2; $i <= $a; $i++) {
+            $result *= $i;
+        }
+        return $result;
     }
 
     public function pressCubeRoot()
     {
-        if(count($this->stack) > 1) {
+        if (count($this->stack) > 1) {
             $this->evaluateStack();
         }
         $this->op = "∛";
     }
 
-    protected function evaluateStack() {
-        switch($this->op) {
+    public function pressFactorial()
+    {
+        if (count($this->stack) > 1) {
+            $this->evaluateStack();
+        }
+        $this->op = "!";
+    }
+
+    protected function evaluateStack()
+    {
+        switch ($this->op) {
             case "∛":
                 $result = $this->cubeRoot(array_shift($this->stack));
+                break;
+            case "!":
+                $result = $this->factorial(array_shift($this->stack));
                 break;
             default:
                 parent::evaluateStack();
@@ -31,11 +49,6 @@ class ScientificCalculator extends Calculator implements iScientificCalculator {
         }
         $this->clearStack();
         $this->stack[] = $result;
-    }
-
-    public function factorial($a)
-    {
-        return gmp_fact($a);
     }
 
     public function decToHex($a)
