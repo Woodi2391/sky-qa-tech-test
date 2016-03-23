@@ -15,3 +15,10 @@ Feature: Division
     And I enter "2" into the calculator
     And I hit "equals"
     Then I see a result of "1"
+
+  Scenario: Divide by a negative number
+    Given I enter "10" into the calculator
+    And I hit "divide"
+    And I enter "-5" into the calculator
+    And I hit "equals"
+    Then I see a result of "-2"
